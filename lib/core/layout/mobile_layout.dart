@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_assessment/core/components/app_drawer.dart';
 
 class MobileLayout extends StatelessWidget {
-  const MobileLayout({super.key});
+  const MobileLayout({super.key, required this.body});
+  final Widget body;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("app bar", style: TextStyle(fontSize: 14))),
-      drawer: AppDrawer(),
-      body: Center(child: Text("Mobile Layout")),
-    );
+    return Scaffold(appBar: AppBar(), drawer: AppDrawer(), body: body);
   }
 }
