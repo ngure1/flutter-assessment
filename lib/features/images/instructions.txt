@@ -1,0 +1,14 @@
+Requirements:
+ - fetch popular images from pixaby api
+ - Display the images in responsive image cars that include thumbnail(ie image),photographers name, tags
+ - Grid on web list on mobile ( maybe try out a masonry layout type of thing)
+ - Have some form of pagination 
+
+ Structure of request from api documentation
+
+// https://pixabay.com/api/?key={readkeyfromenv}&q=popular&page=2&per_page=10&image_type=photo
+// total : number => divide this by the current page number to check if it has next page
+// hits : actual data [] per object we extract: 
+        - webformatURL eg webformatURL:"https://pixabay.com/get/gf7232ee51c5af66fa47a3793c2a84f3f0502be5e58fe895494ec38ed925c160fc6003eada0027d15b69d4bf9758039e7bb0c2be9a2c689543be21e126b9025ff_640.jpg" 
+        - tags eg tags:"blue, deep sea, popular" -> thinking these should be small badges different colors
+        - user eg user:"tsolanes"

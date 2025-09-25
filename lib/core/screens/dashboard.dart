@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_assessment/core/layout/desktop_and_tablet_layout.dart';
 import 'package:flutter_assessment/core/layout/layout.dart';
 import 'package:flutter_assessment/core/layout/mobile_layout.dart';
-import 'package:flutter_assessment/features/dashboard/widgets/dashboard_images_list.dart';
+import 'package:flutter_assessment/features/images/dashboard/widgets/dashboard_images_list.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});

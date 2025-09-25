@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/core/constants/constants.dart';
-import 'package:flutter_assessment/features/dashboard/provider/dashboard_images_provider.dart';
-import 'package:flutter_assessment/features/dashboard/widgets/dashboard_image_card.dart';
+import 'package:flutter_assessment/features/images/dashboard/provider/dashboard_images_provider.dart';
+import 'package:flutter_assessment/features/images/widgets/image_card.dart';
 import 'package:provider/provider.dart';
 
 class DashboardImagesList extends StatefulWidget {
@@ -88,9 +88,7 @@ class _DashboardImagesListState extends State<DashboardImagesList> {
                   if (index == state.images.length) {
                     return const Center(child: CircularProgressIndicator());
                   }
-                  return DashboardImageCard(
-                    dashboardImageData: state.images[index],
-                  );
+                  return ImageCard(dashboardImageData: state.images[index]);
                 },
               ),
             ),

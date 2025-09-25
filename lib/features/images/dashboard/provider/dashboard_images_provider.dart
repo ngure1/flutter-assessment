@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assessment/features/dashboard/models/dashboard_model.dart';
-import 'package:flutter_assessment/features/dashboard/services/dashboard_images_data_service.dart';
+import 'package:flutter_assessment/features/images/models/image_model.dart';
+import 'package:flutter_assessment/features/images/services/images_data_service.dart';
 
 class DashboardImagesProvider extends ChangeNotifier {
-  final _service = DashboardImagesDataService();
+  final _service = RetrieveImagesDataService();
   // State variables
-  List<DashboardImagesModel> _images = [];
+  List<ImagesModel> _images = [];
   bool _isLoading = false;
   bool _hasError = false;
   String? _errorMessage;
@@ -14,7 +14,7 @@ class DashboardImagesProvider extends ChangeNotifier {
   bool _hasNextPage = false;
 
   // Getters
-  List<DashboardImagesModel> get images => List.unmodifiable(_images);
+  List<ImagesModel> get images => List.unmodifiable(_images);
   bool get isLoading => _isLoading;
   bool get hasError => _hasError;
   String? get errorMessage => _errorMessage;

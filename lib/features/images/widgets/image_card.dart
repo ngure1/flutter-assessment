@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assessment/features/dashboard/models/dashboard_model.dart';
+import 'package:flutter_assessment/features/images/models/image_model.dart';
 
 // todo : create skeleton for this card
-class DashboardImageCard extends StatelessWidget {
-  const DashboardImageCard({super.key, required this.dashboardImageData});
+class ImageCard extends StatelessWidget {
+  const ImageCard({super.key, required this.dashboardImageData});
 
-  final DashboardImagesModel dashboardImageData;
+  final ImagesModel dashboardImageData;
   @override
   Widget build(BuildContext context) {
     return Card(

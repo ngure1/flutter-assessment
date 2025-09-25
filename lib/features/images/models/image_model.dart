@@ -1,44 +1,45 @@
-class DashboardApiResponseModel {
+class ImagesApiResponseModel {
   final int total;
   final int totalHits;
-  final List<DashboardImagesModel> hits;
+  final List<ImagesModel> hits;
 
-  DashboardApiResponseModel({
+  ImagesApiResponseModel({
     required this.total,
     required this.totalHits,
     required this.hits,
   });
 
-  factory DashboardApiResponseModel.fromJson(Map<String, dynamic> json) {
-    return DashboardApiResponseModel(
+  factory ImagesApiResponseModel.fromJson(Map<String, dynamic> json) {
+    return ImagesApiResponseModel(
       total: json['total'] ?? 0,
       totalHits: json['totalHits'] ?? 0,
       hits:
           (json['hits'] as List<dynamic>?)
-              ?.map((hit) => DashboardImagesModel.fromJson(hit))
+              ?.map((hit) => ImagesModel.fromJson(hit))
               .toList() ??
           [],
     );
   }
 }
 
-class DashboardImagesModel {
+class ImagesModel {
   final String photographerName;
   final String imageUrl;
   final List<String> tags;
   final int id;
 
-  DashboardImagesModel({
+  ImagesModel({
     required this.photographerName,
     required this.tags,
     required this.imageUrl,
     required this.id,
   });
 
-  factory DashboardImagesModel.fromJson(Map<String, dynamic> json) {
-    return DashboardImagesModel(
+  factory ImagesModel.fromJson(Map<String, dynamic> json) {
+    return ImagesModel(
       id: json['id'] ?? 0,
       photographerName: json['user'] ?? 'Unknown',
+      // todo : add placeholder image url
       imageUrl: json['webformatURL'] ?? '',
       tags:
           (json['tags'] as String?)
