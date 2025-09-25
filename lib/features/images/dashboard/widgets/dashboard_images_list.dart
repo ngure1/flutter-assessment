@@ -21,10 +21,13 @@ class _DashboardImagesListState extends State<DashboardImagesList> {
     _scrollController.addListener(_onScroll);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<DashboardImagesProvider>(
+      var provider = Provider.of<DashboardImagesProvider>(
         context,
         listen: false,
-      ).fetchImages();
+      );
+      if (provider.images.isEmpty) {
+        provider.fetchImages();
+      }
     });
   }
 
