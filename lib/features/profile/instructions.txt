@@ -1,0 +1,9 @@
+Create validated user form with:
+ - Full name 
+ - Email
+ - Favourite category (as a dropdown)
+ - Password & confirm password (with eye on and off)
+
+ on submit send post request to https://jsonplaceholder.typicode.com/posts
+
+ - show  the returned id in a success message

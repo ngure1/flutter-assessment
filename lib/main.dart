@@ -5,6 +5,7 @@ import 'package:flutter_assessment/core/screens/gallery.dart';
 import 'package:flutter_assessment/core/screens/profile.dart';
 import 'package:flutter_assessment/features/images/dashboard/provider/dashboard_images_provider.dart';
 import 'package:flutter_assessment/features/images/gallery/provider/gallery_search_provider.dart';
+import 'package:flutter_assessment/features/profile/provider/user_provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 // import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -18,6 +19,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => DashboardImagesProvider()),
         ChangeNotifierProvider(create: (context) => GallerySearchProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
       ],
       child: const MainApp(),
     ),
