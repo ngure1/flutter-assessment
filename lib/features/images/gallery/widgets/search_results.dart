@@ -70,7 +70,7 @@ class _GallerySearchResultsListState extends State<GallerySearchResultsList> {
                     crossAxisCount: width >= ScreenSize.desktop
                         ? 4
                         : width >= ScreenSize.tablet
-                        ? 3
+                        ? 2
                         : 1,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,

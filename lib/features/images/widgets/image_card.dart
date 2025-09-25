@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment/core/constants/constants.dart';
 import 'package:flutter_assessment/core/utils/text_transformation.dart';
 import 'package:flutter_assessment/features/images/models/image_model.dart';
 import 'package:flutter_assessment/features/images/widgets/badge_chip.dart';
@@ -24,13 +25,22 @@ class ImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final theme = Theme.of(context);
+
     return Card(
       margin: const EdgeInsets.all(8),
       elevation: 2,
       shadowColor: Colors.black.withValues(alpha: 0.1),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(
+          width > ScreenSize.desktop
+              ? 16
+              : width > ScreenSize.tablet
+              ? 10
+              : 14,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -39,7 +49,11 @@ class ImageCard extends StatelessWidget {
               // todo : improve image loading performance
               child: Image.network(
                 dashboardImageData.imageUrl,
-                height: 200,
+                height: width > ScreenSize.desktop
+                    ? 200
+                    : width > ScreenSize.tablet
+                    ? 150
+                    : 200,
                 width: double.infinity,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
@@ -63,10 +77,17 @@ class ImageCard extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               dashboardImageData.photographerName.capitalize(),
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
-              ),
+              style: width > ScreenSize.tablet
+                  ? theme.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    )
+                  : width > ScreenSize.desktop
+                  ? theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    )
+                  : theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
             ),
             const SizedBox(height: 12),
             _buildChips(),

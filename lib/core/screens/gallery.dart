@@ -24,7 +24,15 @@ class GalleryPage extends StatelessWidget {
           ),
         ),
       ),
-      mobileLayout: MobileLayout(body: Text("Mobile gallery page")),
+      mobileLayout: MobileLayout(body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GallerySearchTextField(),
+            SizedBox(height: 12),
+            GallerySearchResultsList(),
+          ],
+        ),
+      ),
     );
   }
 }

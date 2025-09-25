@@ -16,7 +16,7 @@ class DashboardPage extends StatelessWidget {
           child: DashboardImagesList(),
         ),
       ),
-      mobileLayout: MobileLayout(body: Text("Mobile dashboard page")),
+      mobileLayout: MobileLayout(body: DashboardImagesList()),
     );
   }
 }

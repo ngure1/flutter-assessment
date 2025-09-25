@@ -76,12 +76,19 @@ class _DashboardImagesListState extends State<DashboardImagesList> {
               child: GridView.builder(
                 controller: _scrollController,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: width >= ScreenSize.desktop
+                  crossAxisCount: width >= ScreenSize.largeDesktop
                       ? 4
-                      : width >= ScreenSize.tablet
+                      : width >= ScreenSize.desktop
                       ? 3
+                      : width >= ScreenSize.tablet
+                      ? 2
                       : 1,
                   crossAxisSpacing: 10,
+                  childAspectRatio: width > ScreenSize.tablet
+                      ? 1
+                      : width > ScreenSize.smTablet
+                      ? 1.75
+                      : 1.25,
                   mainAxisSpacing: 10,
                 ),
                 itemCount:

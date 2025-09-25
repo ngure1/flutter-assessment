@@ -1,6 +1,8 @@
 class ScreenSize {
-  static int tablet = 768;
-  static int desktop = 1368;
+  static int smTablet = 510;
+  static int tablet = 770;
+  static int desktop = 1250;
+  static int largeDesktop = 1700;
 }
 
 class Urls {

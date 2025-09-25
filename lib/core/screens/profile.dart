@@ -13,7 +13,7 @@ class ProfilePage extends StatelessWidget {
       desktopAndTabletLayout: DesktopAndTabletLayout(
         body: Padding(padding: const EdgeInsets.all(8.0), child: UserForm()),
       ),
-      mobileLayout: MobileLayout(body: Text("Mobile profile page")),
+      mobileLayout: MobileLayout(body: UserForm()),
     );
   }
 }
