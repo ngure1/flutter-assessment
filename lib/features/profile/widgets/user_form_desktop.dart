@@ -1,6 +1,10 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment/core/components/app_dropdown.dart';
 import 'package:flutter_assessment/core/components/button.dart';
 import 'package:flutter_assessment/core/components/form_input_field.dart';
+import 'package:flutter_assessment/core/types.dart';
 import 'package:flutter_assessment/features/profile/provider/user_provider.dart';
 import 'package:flutter_assessment/features/profile/utils.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +21,8 @@ class _DesktopUserFormState extends State<DesktopUserForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _categoryController = TextEditingController();
+
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
@@ -24,12 +30,15 @@ class _DesktopUserFormState extends State<DesktopUserForm> {
   static const double _fieldSpacing = 16.0;
   static const double _rowSpacing = 20.0;
 
+  String? category;
+
   @override
   void dispose() {
     _fullNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
+    _categoryController.dispose();
     super.dispose();
   }
 
@@ -37,14 +46,16 @@ class _DesktopUserFormState extends State<DesktopUserForm> {
   Widget build(BuildContext context) {
     return Consumer<UserProvider>(
       builder: (context, provider, _) {
-        return ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: _maxFormWidth),
+        return SizedBox(
+          width: math.min(
+            _maxFormWidth,
+            MediaQuery.of(context).size.width * 0.9,
+          ),
           child: Form(
             key: provider.formKey,
             child: Column(
               spacing: _rowSpacing,
               children: [
-                // First row: Full Name and Email
                 Row(
                   children: [
                     Expanded(
@@ -71,7 +82,6 @@ class _DesktopUserFormState extends State<DesktopUserForm> {
                     ),
                   ],
                 ),
-                // Second row: Password and Confirm Password
                 Row(
                   children: [
                     Expanded(
@@ -139,7 +149,28 @@ class _DesktopUserFormState extends State<DesktopUserForm> {
                     ),
                   ],
                 ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: AppDropdown<CategoryOptions>(
+                        controller: _categoryController,
+                        width: double.infinity,
+                        menuWidth: 250,
+                        hintText: "Select a category",
+                        onSelected: (CategoryOptions? value) {
+                          setState(() {
+                            category = value!.value;
+                          });
+                        },
+                        dropdownMenuEntries: CategoryOptions.entries,
+                      ),
+                    ),
+                    const SizedBox(width: _fieldSpacing),
+                    Expanded(child: SizedBox()),
+                  ],
+                ),
                 const SizedBox(height: 8),
+
                 AppButton(
                   onPressed: () => onSubmit(
                     context: context,
@@ -148,9 +179,10 @@ class _DesktopUserFormState extends State<DesktopUserForm> {
                     email: _emailController.text,
                     password: _passwordController.text,
                     confirmPassword: _confirmPasswordController.text,
+                    category: category,
                   ),
                   isLoading: provider.isLoading,
-                  text: 'Create Account',
+                  text: 'Submit',
                 ),
               ],
             ),

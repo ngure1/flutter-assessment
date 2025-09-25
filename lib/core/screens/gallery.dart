@@ -24,13 +24,17 @@ class GalleryPage extends StatelessWidget {
           ),
         ),
       ),
-      mobileLayout: MobileLayout(body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GallerySearchTextField(),
-            SizedBox(height: 12),
-            GallerySearchResultsList(),
-          ],
+      mobileLayout: MobileLayout(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GallerySearchTextField(),
+              SizedBox(height: 12),
+              GallerySearchResultsList(),
+            ],
+          ),
         ),
       ),
     );

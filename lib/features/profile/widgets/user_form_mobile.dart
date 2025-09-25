@@ -1,31 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment/core/components/app_dropdown.dart';
 import 'package:flutter_assessment/core/components/button.dart';
 import 'package:flutter_assessment/core/components/form_input_field.dart';
+import 'package:flutter_assessment/core/types.dart';
 import 'package:flutter_assessment/features/profile/provider/user_provider.dart';
 import 'package:flutter_assessment/features/profile/utils.dart';
 import 'package:provider/provider.dart';
 
-class UserForm extends StatefulWidget {
-  const UserForm({super.key});
+class UserFormMobile extends StatefulWidget {
+  const UserFormMobile({super.key});
 
   @override
-  State<UserForm> createState() => _UserFormState();
+  State<UserFormMobile> createState() => _UserFormMobileState();
 }
 
-class _UserFormState extends State<UserForm> {
+class _UserFormMobileState extends State<UserFormMobile> {
   final _fullNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _categoryController = TextEditingController();
+
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
+  String? category;
   @override
   void dispose() {
     _fullNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
+    _categoryController.dispose();
     super.dispose();
   }
 
@@ -109,6 +115,18 @@ class _UserFormState extends State<UserForm> {
                     ? "Passwords do not match"
                     : null,
               ),
+              AppDropdown<CategoryOptions>(
+                controller: _categoryController,
+                width: double.infinity,
+                menuWidth: 250,
+                hintText: "Select a category",
+                onSelected: (CategoryOptions? value) {
+                  setState(() {
+                    category = value!.value;
+                  });
+                },
+                dropdownMenuEntries: CategoryOptions.entries,
+              ),
               const SizedBox(height: 8),
               AppButton(
                 onPressed: () => onSubmit(
@@ -118,9 +136,10 @@ class _UserFormState extends State<UserForm> {
                   email: _emailController.text,
                   password: _passwordController.text,
                   confirmPassword: _confirmPasswordController.text,
+                  category: category,
                 ),
                 isLoading: provider.isLoading,
-                text: 'Create Account',
+                text: 'Submit',
               ),
             ],
           ),

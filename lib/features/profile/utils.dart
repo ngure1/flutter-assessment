@@ -75,6 +75,7 @@ Future<void> onSubmit({
   required String email,
   required String password,
   required String confirmPassword,
+  String? category
 }) async {
   if (!provider.validateForm()) return;
 
@@ -90,7 +91,7 @@ Future<void> onSubmit({
       fullName: fullName.trim(),
       email: email.trim(),
       password: password,
-      category: "some",
+      category: category ?? "",
     ),
   );
 
@@ -103,7 +104,7 @@ void showSubmissionResult(UserProvider provider, BuildContext context) {
   if (provider.id != null && !provider.hasError) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text("Account created successfully! ID: ${provider.id}"),
+        content: Text("Submitted successfully! Id: ${provider.id}"),
         backgroundColor: Colors.green,
         behavior: SnackBarBehavior.floating,
       ),

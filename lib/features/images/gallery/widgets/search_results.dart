@@ -58,7 +58,13 @@ class _GallerySearchResultsListState extends State<GallerySearchResultsList> {
             );
           }
           if (state.images.isEmpty && !state.hasQuery) {
-            return Text("Start searching to find images");
+            return Text(
+              "Start searching to find images",
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                color: Colors.blueGrey,
+              ),
+            );
           }
 
           return Column(
